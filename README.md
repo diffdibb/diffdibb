@@ -1,10 +1,10 @@
 python-primogen
 ===============
 
-[![Build Status](https://travis-ci.org/steenzout/python-primogen.svg?branch=master)](https://travis-ci.org/steenzout/python-primogen)
-[![Code Health](https://landscape.io/github/steenzout/python-primogen/master/landscape.png)](https://landscape.io/github/steenzout/python-primogen/master)
-[![Coverage Status](https://coveralls.io/repos/steenzout/python-primogen/badge.png)](https://coveralls.io/r/steenzout/python-primogen)
-[![Requirements Status](https://requires.io/github/steenzout/python-primogen/requirements.png?branch=master)](https://requires.io/github/steenzout/python-primogen/requirements/?branch=master)
+[![Build Status](https://travis-ci.org/diffdibb/diffdibb.svg?branch=master)](https://travis-ci.org/diffdibb/diffdibb)
+[![Code Health](https://landscape.io/github/diffdibb/diffdibb/master/landscape.png)](https://landscape.io/github/diffdibb/diffdibb/master)
+[![Coverage Status](https://coveralls.io/repos/diffdibb/diffdibb/badge.png)](https://coveralls.io/r/diffdibb/diffdibb)
+[![Requirements Status](https://requires.io/github/diffdibb/diffdibb/requirements.png?branch=master)](https://requires.io/github/diffdibb/diffdibb/requirements/?branch=master)
 
 This repository's goal is to be a starting point for Python projects.
 

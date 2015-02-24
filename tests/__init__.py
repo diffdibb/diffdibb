@@ -1,23 +1,41 @@
+# -*- coding: utf-8 -*-
+#
+#   diffdibb : tools to audit databases.
+#
+# Copyright (C) 2015, diffdibb
+# https://github.com/diffdibb
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 """
-.. module:: company.package.tests
+.. module:: diffdibb.tests
     :platform: Unix
     :synopsis:
 
-.. moduleauthor:: Your Name <email address>
+.. moduleauthor:: Pedro Salgado <steenzout@ymail.com>
 """
 
 import os
-
-import company.package.config
-import company.package.logging
-
 import logging
-
 import unittest
+
+import diffdibb.config
+import diffdibb.logging
 
 
 LOGGING_CONFIG_FILE = '%s/tests/logging.conf' % os.curdir
-PACKAGE_CONFIG_FILE = '%s/tests/package.cfg' % os.curdir
+PACKAGE_CONFIG_FILE = '%s/tests/diffdibb.cfg' % os.curdir
 
 
 class Basic(object):
@@ -32,10 +50,10 @@ class Basic(object):
         """
         logging.getLogger('%s.%s' % (__name__, 'Basic')).info('setup_configuration()')
 
-        company.package.config.reset()
-        company.package.config.load_configuration(PACKAGE_CONFIG_FILE)
+        diffdibb.config.reset()
+        diffdibb.config.load_configuration(PACKAGE_CONFIG_FILE)
 
-        self.configuration = company.package.config.get()
+        self.configuration = diffdibb.config.get()
 
     def setup_logger(self):
         """
@@ -44,7 +62,7 @@ class Basic(object):
         """
         logging.getLogger('%s.%s' % (__name__, 'Basic')).info('setup_logger()')
 
-        company.package.logging.load_configuration(LOGGING_CONFIG_FILE)
+        diffdibb.logging.load_configuration(LOGGING_CONFIG_FILE)
 
         self.logger = logging.getLogger('%s.%s' % (__name__, self.__class__.__name__))
 

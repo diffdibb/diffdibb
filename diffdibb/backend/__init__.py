@@ -18,21 +18,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+"""
+.. module:: diffdibb.backend
+    :platform: Unix
+    :synopsis: diffdb backend.
 
-import unittest
-
-from diffdibb import version
-
-
-class VersionTestCase(unittest.TestCase):
-    """
-    Test case for the version module.
-    """
-
-    def test_attributes(self):
-        """
-        Tests the version module attributes.
-        """
-
-        self.assertFalse(version.__dict__ is None)
-        self.assertTrue('__version__' in version.__dict__)
+.. moduleauthor:: Pedro Salgado <steenzout@ymail.com>
+"""

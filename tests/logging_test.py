@@ -1,33 +1,51 @@
-import company.package.logging
-
-import mock
-
-import pytest
+# -*- coding: utf-8 -*-
+#
+#   diffdibb : tools to audit databases.
+#
+# Copyright (C) 2015, diffdibb
+# https://github.com/diffdibb
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
 import unittest
 
+import mock
+import pytest
 
-from company.package.logging import DEFAULT_CONFIG_FILE
+import diffdibb.logging
+from diffdibb.logging import DEFAULT_CONFIG_FILE
 
 
 class LoadConfigurationTestCase(unittest.TestCase):
     """
-    Tests for the company.package.logging.load_configuration() function.
+    Tests for the diffdibb.logging.load_configuration() function.
     """
 
     def setUp(self):
         # mock of logging.RootLogger
-        self.patch_get_logger = mock.patch('company.package.logging.logging.getLogger', autospec=True)
+        self.patch_get_logger = mock.patch('diffdibb.logging.logging.getLogger', autospec=True)
         self.mock_get_logger = self.patch_get_logger.start()
 
-        self.patch_root_logger = mock.patch('company.package.logging.logging.RootLogger', autospec=True)
+        self.patch_root_logger = mock.patch('diffdibb.logging.logging.RootLogger', autospec=True)
         self.mock_root_logger = self.patch_root_logger.start()
         self.mock_get_logger.return_value = self.mock_root_logger
 
         self.patch_path_exists = mock.patch('os.path', autospec=True)
         self.mock_path = self.patch_path_exists.start()
 
-        self.patch_fileConfig = mock.patch('company.package.logging.config.fileConfig', autospec=True)
+        self.patch_fileConfig = mock.patch('diffdibb.logging.config.fileConfig', autospec=True)
         self.mock_fileConfig = self.patch_fileConfig.start()
 
     def tearDown(self):
@@ -38,13 +56,13 @@ class LoadConfigurationTestCase(unittest.TestCase):
 
     def test(self):
         """
-        Test company.package.logging.load_configuration().
+        Test diffdibb.logging.load_configuration().
         """
         self.mock_path.exists.return_value = True
         self.mock_path.isfile.return_value = True
         self.mock_fileConfig.return_value = None
 
-        company.package.logging.load_configuration()
+        diffdibb.logging.load_configuration()
 
         self.mock_path.exists.assert_called_once_with(DEFAULT_CONFIG_FILE)
         self.mock_path.isfile.assert_called_once_with(DEFAULT_CONFIG_FILE)
@@ -55,13 +73,13 @@ class LoadConfigurationTestCase(unittest.TestCase):
 
     def test_nofile(self):
         """
-        Test company.package.logging.load_configuration() when the configuration file doesn't exist.
+        Test diffdibb.logging.load_configuration() when the configuration file doesn't exist.
         """
         self.mock_path.exists.return_value = True
         self.mock_path.isfile.return_value = False
 
         with pytest.raises(ValueError):
-            company.package.logging.load_configuration()
+            diffdibb.logging.load_configuration()
 
         self.mock_path.exists.assert_called_once_with(DEFAULT_CONFIG_FILE)
         self.mock_path.isfile.assert_called_once_with(DEFAULT_CONFIG_FILE)
@@ -73,14 +91,14 @@ class LoadConfigurationTestCase(unittest.TestCase):
 
     def test_errors(self):
         """
-        Test company.package.logging.load_configuration() when errors are raised.
+        Test diffdibb.logging.load_configuration() when errors are raised.
         """
         self.mock_path.exists.return_value = True
         self.mock_path.isfile.return_value = True
         self.mock_fileConfig.side_effect = ValueError('fake error')
 
         with pytest.raises(ValueError):
-            company.package.logging.load_configuration()
+            diffdibb.logging.load_configuration()
 
         self.mock_path.exists.assert_called_once_with(DEFAULT_CONFIG_FILE)
         self.mock_path.isfile.assert_called_once_with(DEFAULT_CONFIG_FILE)
